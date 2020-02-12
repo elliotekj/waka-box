@@ -28,7 +28,7 @@ async function updateGist(stats) {
   const lines = [];
   for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
     const data = stats.data.languages[i];
-    let { name, percent, text: time } = data;
+    var { name, percent, text: time } = data;
   
     if name == "Sketch Drawing" {
       name = "Sketch.app";
