@@ -26,6 +26,18 @@ async function updateGist(stats) {
   }
 
   const lines = [];
+
+  const start = new Date(stats.data.start);
+  const end = new Date(stats.data.end);
+  const dateString = `${start.toLocaleDateString(
+    "en-GB"
+  )} to ${end.toLocaleDateString("en-GB")}`;
+  const total = stats.data.human_readable_total_including_other_language;
+  lines.push(
+    `${"Total".padEnd(11)} ${total.padEnd(14)} ${dateString.padStart(28)}`
+  );
+  lines.push("=======================================================");
+
   for (let i = 0; i < stats.data.languages.length; i++) {
     const data = stats.data.languages[i];
     let { name, percent, text: time } = data;
@@ -44,8 +56,6 @@ async function updateGist(stats) {
     lines.push(line.join(" "));
   }
 
-  if (lines.length == 0) return;
-
   try {
     // Get original filename to update that same file
     const filename = Object.keys(gist.data.files)[0];
@@ -53,7 +63,7 @@ async function updateGist(stats) {
       gist_id: gistId,
       files: {
         [filename]: {
-          filename: `Weekly Breakdown`,
+          filename: `7 Day Breakdown`,
           content: lines.join("\n")
         }
       }

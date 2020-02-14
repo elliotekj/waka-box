@@ -855,6 +855,14 @@ module.exports = (function(e, t) {
         console.error(`Unable to get gist\n${e}`);
       }
       const r = [];
+      const n = new Date(e.data.start);
+      const i = new Date(e.data.end);
+      const s = `${n.toLocaleDateString("en-GB")} to ${i.toLocaleDateString(
+        "en-GB"
+      )}`;
+      const a = e.data.human_readable_total_including_other_language;
+      r.push(`${"Total".padEnd(11)} ${a.padEnd(14)} ${s.padStart(28)}`);
+      r.push("=======================================================");
       for (let t = 0; t < e.data.languages.length; t++) {
         const n = e.data.languages[t];
         let { name: i, percent: s, text: o } = n;
@@ -869,14 +877,11 @@ module.exports = (function(e, t) {
         ];
         r.push(a.join(" "));
       }
-      if (r.length == 0) return;
       try {
         const e = Object.keys(t.data.files)[0];
         await c.gists.update({
           gist_id: o,
-          files: {
-            [e]: { filename: `Weekly Breakdown`, content: r.join("\n") }
-          }
+          files: { [e]: { filename: `7 Day Breakdown`, content: r.join("\n") } }
         });
       } catch (e) {
         console.error(`Unable to update gist\n${e}`);
