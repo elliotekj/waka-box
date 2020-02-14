@@ -28,12 +28,12 @@ async function updateGist(stats) {
   const lines = [];
   for (let i = 0; i < Math.min(stats.data.languages.length, 5); i++) {
     const data = stats.data.languages[i];
-    var { name, percent, text: time } = data;
-  
-    if name == "Sketch Drawing" {
+    let { name, percent, text: time } = data;
+
+    if (name === "Sketch Drawing") {
       name = "Sketch.app";
     }
-    
+
     const line = [
       name.padEnd(11),
       time.padEnd(14),
