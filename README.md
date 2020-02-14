@@ -28,3 +28,9 @@
 1. Add the following environment variables:
    - **GH_TOKEN:** The GitHub token generated above.
    - **WAKATIME_API_KEY:** The API key for your WakaTime account.
+
+## Development
+
+1. `yarn` to install dependencies.
+2. `cp sample.env .env` and fill in the env vars.
+3. `yarn run build && node dist/index.js` to build and run.
