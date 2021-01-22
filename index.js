@@ -34,9 +34,9 @@ async function updateGist(stats) {
   )} to ${end.toLocaleDateString("en-GB")}`;
   const total = stats.data.human_readable_total_including_other_language;
   lines.push(
-    `${"Total".padEnd(11)} ${total.padEnd(14)} ${dateString.padStart(28)}`
+    `${"Total".padEnd(10)} ${total.padEnd(14)} ${dateString.padStart(28)}`
   );
-  lines.push("=======================================================");
+  lines.push("======================================================");
 
   for (let i = 0; i < stats.data.languages.length; i++) {
     const data = stats.data.languages[i];
@@ -47,7 +47,7 @@ async function updateGist(stats) {
     }
 
     const line = [
-      name.padEnd(11),
+      name.padEnd(10),
       time.padEnd(14),
       generateBarChart(percent, 21),
       String(percent.toFixed(1)).padStart(5) + "%"
